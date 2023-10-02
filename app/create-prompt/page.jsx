@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -13,7 +13,12 @@ function CreatePrompt() {
         prompt: "",
         tag: "",
     });
-
+    // to be changed 
+    useEffect(()=>{
+        if(!session?.id){
+            router.push('/');
+          }
+    },[])
     const createPrompt =async (e) => {
         e.preventDefault();
         setSubmitting(true);
